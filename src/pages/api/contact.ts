@@ -1,20 +1,6 @@
-// Cloudflare Pages Function — POST /api/contact
-//
-// Accepts JSON {name, email, company?, message}, sends an email via Resend
-// (https://resend.com) to CONTACT_TO. The recipient address never appears in
-// client code.
-//
-// Required env vars (set in Cloudflare Pages dashboard → Settings → Environment variables):
-//   RESEND_API_KEY  — secret API key from resend.com
-//   CONTACT_TO      — recipient email (e.g. slongietti@gmail.com)
-//   CONTACT_FROM    — verified sender (e.g. "Volare <hello@go-volare.com>")
-//                     Until go-volare.com is verified with Resend, use "onboarding@resend.dev"
+import type { APIRoute } from "astro";
 
-interface Env {
-  RESEND_API_KEY: string;
-  CONTACT_TO: string;
-  CONTACT_FROM?: string;
-}
+export const prerender = false;
 
 interface Payload {
   name?: string;
@@ -31,10 +17,13 @@ const json = (body: unknown, status = 200) =>
 
 const sanitize = (s: string) => s.replace(/[<>]/g, "").trim();
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { request, env } = context;
+export const POST: APIRoute = async ({ request, locals }) => {
+  const env = (locals as { runtime?: { env: Record<string, string | undefined> } }).runtime?.env ?? {};
+  const RESEND_API_KEY = env.RESEND_API_KEY;
+  const CONTACT_TO = env.CONTACT_TO;
+  const CONTACT_FROM = env.CONTACT_FROM ?? "onboarding@resend.dev";
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_TO) {
+  if (!RESEND_API_KEY || !CONTACT_TO) {
     return json({ error: "Server is not configured." }, 500);
   }
 
@@ -60,9 +49,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ error: "Submission too large." }, 413);
   }
 
-  const subjectCompany = companyField ? ` (${companyField})` : "";
-  const subject = `New engagement inquiry: ${name}${subjectCompany}`;
-
+  const subject = `New engagement inquiry: ${name}${companyField ? ` (${companyField})` : ""}`;
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
@@ -74,21 +61,19 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     .filter(Boolean)
     .join("\n");
 
-  const resendBody = {
-    from: env.CONTACT_FROM ?? "onboarding@resend.dev",
-    to: [env.CONTACT_TO],
-    reply_to: email,
-    subject,
-    text,
-  };
-
   const resp = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${RESEND_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(resendBody),
+    body: JSON.stringify({
+      from: CONTACT_FROM,
+      to: [CONTACT_TO],
+      reply_to: email,
+      subject,
+      text,
+    }),
   });
 
   if (!resp.ok) {
@@ -100,13 +85,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   return json({ ok: true });
 };
 
-// Reject anything that isn't POST.
-export const onRequest: PagesFunction<Env> = async (context) => {
-  if (context.request.method === "POST") {
-    return onRequestPost(context);
-  }
-  return new Response("Method Not Allowed", {
+export const ALL: APIRoute = () =>
+  new Response("Method Not Allowed", {
     status: 405,
     headers: { Allow: "POST" },
   });
-};
