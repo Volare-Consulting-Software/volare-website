@@ -6,7 +6,77 @@ import ScrollReveal from "../components/ScrollReveal.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
 import IconBadge from "../components/IconBadge.astro";
-import { pilota } from "../content/copy";
+
+const pilota = {
+  hero: {
+    eyebrow: "How we work",
+    title: "Pilota.",
+    subtitle:
+      "An AI engine with humans at every gate. It's how we ship software fast — without the slop.",
+  },
+  intro: {
+    headline: "Pilota is the engine. You see the result.",
+    body: "Pilota is what we use to deliver software faster than a typical team while keeping quality where it should be. AI handles the heavy lifting. Humans make the calls. You hire Volare; Pilota is how the work gets done.",
+  },
+  engagements: [
+    {
+      tagline: "Green-field",
+      title: "New systems",
+      body: "Idea to working software. We design and build new systems end-to-end — architecture, integrations, and the user experience baked in from day one.",
+    },
+    {
+      tagline: "Connect what you have",
+      title: "Integrations",
+      body: "Make systems talk to each other. Wire in a new third-party API, replace a stale vendor, or stitch internal tools together so the data finally flows.",
+    },
+    {
+      tagline: "Build on what works",
+      title: "Improvements",
+      body: "Fix what's slow, ship what's stuck. We work alongside your team to modernize, extend, or unstick software that's already in production.",
+    },
+    {
+      tagline: "Stalled AI projects",
+      title: "Finish what failed",
+      body: "AI projects stall when there's no plan, no humans in the loop, or no honest measure of done. We diagnose what went wrong, keep what's salvageable, and ship the version that was promised.",
+    },
+  ],
+  process: [
+    {
+      title: "Plan it",
+      body: "We define what to build, who it's for, and what success looks like. Scope, edge cases, and what you'll see at the end — written down before any code is written.",
+    },
+    {
+      title: "Build it small first",
+      body: "A working version of the whole thing on day one. Routes, data, real deploys — small but end-to-end. Not a mockup, not a slide.",
+    },
+    {
+      title: "Grow it in usable pieces",
+      body: "Each release adds a feature you can demo, ship, or hand to a user. The product grows one usable step at a time, on a schedule that holds.",
+    },
+    {
+      title: "Review every step",
+      body: "AI handles the work between gates. Humans approve what ships — what to build next, what's good enough, and what isn't yet. Quality is never an afterthought.",
+    },
+  ],
+  slop: {
+    headline: "Fast software, without the slop.",
+    body: "AI is fast. AI also gets things wrong. We put humans where it matters — choosing what to build, what to keep, and what to ship — so speed never costs you quality. That's the whole point of Pilota: the speed of AI with the judgment of people who've been doing this for a long time.",
+  },
+  outcomes: [
+    {
+      title: "Software you can use",
+      body: "Working software at every checkpoint. Real, runnable, demo-able. No mockup theater, no slide-deck progress.",
+    },
+    {
+      title: "On the date you agreed to",
+      body: "Schedules that hold because the work is sized to fit them. Each step is small enough to estimate honestly.",
+    },
+    {
+      title: "Quality customers feel",
+      body: "Rigorously tested and automatically published for repeatable quality. Every release verified the same way, every time.",
+    },
+  ],
+};
 ---
 
 <Layout
