@@ -1,0 +1,174 @@
+---
+import Wordmark from "./Wordmark.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+function active(href: string) {
+  if (href === "/") return path === "/";
+  return path === href || path.startsWith(href + "/");
+}
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-40 border-b border-transparent transition-colors duration-200"
+>
+  <div class="container-page flex items-center justify-between h-16">
+    <a href="/" class="flex items-center" aria-label="Volare home">
+      <Wordmark size={28} />
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:flex items-center gap-1 text-[15px]">
+      <div class="relative group">
+        <button
+          type="button"
+          class="px-3 py-2 rounded-md inline-flex items-center gap-1 text-[var(--text)] hover:text-[var(--text-strong)] hover:bg-[var(--bg-raised)] transition-colors"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Products
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        <div
+          role="menu"
+          class="absolute right-0 mt-2 min-w-56 origin-top-right rounded-lg border border-[var(--border)] bg-[var(--bg-raised)] shadow-lg p-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-150"
+        >
+          <a
+            href="/pilota"
+            role="menuitem"
+            class="block rounded-md px-3 py-2 hover:bg-[var(--primary-tint)] transition-colors"
+            class:list={[active("/pilota") && "text-[color:var(--color-primary)]"]}
+          >
+            <div class="font-semibold text-[var(--text-strong)]">Pilota</div>
+            <div class="text-sm text-[var(--text-muted)]">AI SDLC engine</div>
+          </a>
+          <a
+            href="/vito"
+            role="menuitem"
+            class="block rounded-md px-3 py-2 hover:bg-[var(--primary-tint)] transition-colors"
+            class:list={[active("/vito") && "text-[color:var(--color-primary)]"]}
+          >
+            <div class="font-semibold text-[var(--text-strong)]">Vito</div>
+            <div class="text-sm text-[var(--text-muted)]">The voice of your product</div>
+          </a>
+        </div>
+      </div>
+
+      <a
+        href="/#about"
+        class="px-3 py-2 rounded-md text-[var(--text)] hover:text-[var(--text-strong)] hover:bg-[var(--bg-raised)] transition-colors"
+      >
+        About
+      </a>
+
+      <ThemeToggle />
+
+      <a
+        href="/#about"
+        class="ml-2 inline-flex items-center justify-center px-4 h-10 rounded-md bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-pressed)] transition-colors"
+      >
+        Start an engagement
+      </a>
+    </nav>
+
+    <button
+      id="nav-toggle"
+      type="button"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      aria-label="Open menu"
+      class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md text-[var(--text-strong)] hover:bg-[var(--bg-raised)] transition-colors"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav"
+    hidden
+    class="md:hidden fixed inset-0 z-50 bg-[var(--bg)] flex flex-col"
+  >
+    <div class="container-page flex items-center justify-between h-16 border-b border-[var(--border)]">
+      <Wordmark size={28} />
+      <button
+        id="nav-close"
+        type="button"
+        aria-label="Close menu"
+        class="inline-flex items-center justify-center w-11 h-11 rounded-md text-[var(--text-strong)] hover:bg-[var(--bg-raised)] transition-colors"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav aria-label="Primary mobile" class="container-page flex-1 overflow-y-auto py-6 flex flex-col gap-1 text-lg">
+      <div class="text-[var(--text-muted)] text-sm uppercase tracking-wider px-3 pt-2 pb-1">Products</div>
+      <a href="/pilota" class="rounded-lg px-3 py-3 hover:bg-[var(--primary-tint)] transition-colors">
+        <div class="font-semibold text-[var(--text-strong)]">Pilota</div>
+        <div class="text-sm text-[var(--text-muted)]">AI SDLC engine</div>
+      </a>
+      <a href="/vito" class="rounded-lg px-3 py-3 hover:bg-[var(--primary-tint)] transition-colors">
+        <div class="font-semibold text-[var(--text-strong)]">Vito</div>
+        <div class="text-sm text-[var(--text-muted)]">The voice of your product</div>
+      </a>
+      <div class="h-px bg-[var(--border)] my-4"></div>
+      <a href="/#about" class="rounded-lg px-3 py-3 hover:bg-[var(--bg-raised)] transition-colors text-[var(--text-strong)]">
+        About
+      </a>
+      <div class="mt-auto flex items-center justify-between gap-3 pt-6">
+        <ThemeToggle />
+        <a
+          href="/#about"
+          class="flex-1 inline-flex items-center justify-center px-4 h-12 rounded-md bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-pressed)] transition-colors"
+        >
+          Start an engagement
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupHeader() {
+    const header = document.getElementById("site-header");
+    const toggle = document.getElementById("nav-toggle");
+    const close = document.getElementById("nav-close");
+    const sheet = document.getElementById("mobile-nav");
+    if (!header || header.dataset.bound === "true") return;
+    header.dataset.bound = "true";
+
+    const onScroll = () => {
+      const scrolled = window.scrollY > 24;
+      header.classList.toggle("border-[var(--border)]", scrolled);
+      header.classList.toggle("bg-[var(--bg)]/80", scrolled);
+      header.classList.toggle("backdrop-blur-md", scrolled);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const open = () => {
+      if (!sheet) return;
+      sheet.hidden = false;
+      toggle?.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+    const shut = () => {
+      if (!sheet) return;
+      sheet.hidden = true;
+      toggle?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+    toggle?.addEventListener("click", open);
+    close?.addEventListener("click", shut);
+    sheet?.querySelectorAll("a").forEach((a) => a.addEventListener("click", shut));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && sheet && !sheet.hidden) shut();
+    });
+  }
+  setupHeader();
+  document.addEventListener("astro:after-swap", setupHeader);
+</script>

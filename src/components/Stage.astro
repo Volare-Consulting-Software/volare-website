@@ -1,0 +1,27 @@
+---
+interface Props {
+  index: number;
+  total: number;
+  title: string;
+  body: string;
+  delay?: number;
+}
+const { index, total, title, body, delay = 0 } = Astro.props;
+const isLast = index === total - 1;
+---
+
+<li class="reveal grid grid-cols-[40px_1fr] gap-5 md:gap-7" style={`transition-delay: ${delay}ms;`}>
+  <div class="relative flex flex-col items-center">
+    <span
+      class="relative z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)] text-white font-bold text-sm"
+      aria-hidden="true"
+    >
+      {index + 1}
+    </span>
+    {!isLast && <span class="absolute top-10 bottom-0 w-px bg-[var(--border)]" />}
+  </div>
+  <div class={`pb-10 ${isLast ? "pb-0" : ""}`}>
+    <h3 class="text-h3 mb-2">{title}</h3>
+    <p class="text-[var(--text)] leading-relaxed max-w-2xl">{body}</p>
+  </div>
+</li>

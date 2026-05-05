@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import CTAButton from "../components/CTAButton.astro";
+import { vito, company } from "../content/copy";
+---
+
+<Layout
+  title="Vito — the voice of your product | Volare"
+  description="Vito is Volare's AI voice for chatbots, agentic workflows, and customer-facing surfaces. Direct. Plainspoken. Inheritor of the Volare voice."
+>
+  <Hero
+    eyebrow={vito.hero.eyebrow}
+    title={vito.hero.title}
+    subtitle={vito.hero.subtitle}
+    transitionName="hero-headline"
+  >
+    <CTAButton href={`mailto:${company.email}?subject=Vito%20engagement`} variant="primary" size="large">
+      Talk to us
+    </CTAButton>
+  </Hero>
+
+  <Section tone="raised" id="uses">
+    <ScrollReveal>
+      <Eyebrow>What Vito does</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">Three places he speaks for you.</h2>
+    </ScrollReveal>
+    <div class="grid gap-6 md:grid-cols-3 mt-12">
+      {
+        vito.uses.map((u, i) => (
+          <ScrollReveal delay={i * 100}>
+            <article class="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-7 h-full">
+              <h3 class="text-h3">{u.title}</h3>
+              <p class="text-[var(--text)] mt-3 leading-relaxed">{u.body}</p>
+            </article>
+          </ScrollReveal>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="voice">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <ScrollReveal>
+          <Eyebrow>The voice</Eyebrow>
+          <h2 class="text-h2 mt-3">{vito.voice.headline}</h2>
+        </ScrollReveal>
+      </div>
+      <div class="md:col-span-7">
+        <ScrollReveal delay={120}>
+          <p class="text-lg leading-relaxed">{vito.voice.body}</p>
+        </ScrollReveal>
+      </div>
+    </div>
+  </Section>
+</Layout>

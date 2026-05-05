@@ -1,0 +1,109 @@
+---
+---
+
+<svg
+  id="airplane-trail"
+  aria-hidden="true"
+  class="airplane-trail pointer-events-none fixed top-0 right-4 lg:right-10 h-[100vh] w-[80px] z-10"
+  viewBox="0 0 80 1000"
+  preserveAspectRatio="none"
+>
+  <defs>
+    <path
+      id="airplane-path"
+      d="M40,0 C70,140 10,260 40,400 C70,540 10,660 40,800 C70,920 40,980 40,1000"
+      fill="none"
+    />
+  </defs>
+  <use
+    href="#airplane-path"
+    stroke="var(--color-primary)"
+    stroke-opacity="0.18"
+    stroke-width="1.5"
+    fill="none"
+  />
+  <use
+    id="airplane-path-fill"
+    href="#airplane-path"
+    stroke="var(--color-primary)"
+    stroke-opacity="0.55"
+    stroke-width="1.5"
+    fill="none"
+    pathLength="1"
+    stroke-dasharray="1"
+    stroke-dashoffset="1"
+  />
+  <g id="airplane-glyph" opacity="0">
+    <circle r="14" fill="var(--bg)" />
+    <path
+      d="M-7,-2 L7,-7 L0,7 L0,1 Z"
+      fill="var(--color-primary)"
+      transform="rotate(135)"
+    />
+  </g>
+</svg>
+
+<style>
+  .airplane-trail {
+    display: none;
+  }
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .airplane-trail {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  function setupTrail() {
+    const svg = document.getElementById("airplane-trail") as SVGSVGElement | null;
+    if (!svg || svg.dataset.bound === "true") return;
+    svg.dataset.bound = "true";
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const wide = window.matchMedia("(min-width: 1024px)").matches;
+    if (reduced || !wide) return;
+
+    const fillPath = document.getElementById("airplane-path-fill") as unknown as SVGPathElement | null;
+    const glyph = document.getElementById("airplane-glyph") as unknown as SVGGElement | null;
+    const pathDef = document.getElementById("airplane-path") as unknown as SVGPathElement | null;
+    if (!fillPath || !glyph || !pathDef) return;
+
+    const totalLen = pathDef.getTotalLength();
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+
+      // Animate stroke
+      fillPath.setAttribute("stroke-dashoffset", String(1 - progress));
+
+      // Position glyph along the path's leading edge.
+      const len = totalLen * progress;
+      const point = pathDef.getPointAtLength(len);
+      const ahead = pathDef.getPointAtLength(Math.min(totalLen, len + 1));
+      const angle = (Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180) / Math.PI;
+      glyph.setAttribute(
+        "transform",
+        `translate(${point.x}, ${point.y}) rotate(${angle})`,
+      );
+      glyph.setAttribute("opacity", progress > 0.005 && progress < 0.995 ? "0.6" : "0");
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  }
+
+  setupTrail();
+  document.addEventListener("astro:after-swap", setupTrail);
+</script>

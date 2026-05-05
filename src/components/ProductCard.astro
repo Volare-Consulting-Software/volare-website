@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  tagline: string;
+  body: string;
+  cta?: string;
+}
+const { title, href, tagline, body, cta = "Read more" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block rounded-2xl border border-[var(--border)] bg-[var(--bg-raised)] p-7 md:p-9 hover:border-[color:var(--color-primary)] transition-colors"
+>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <div class="text-eyebrow">{tagline}</div>
+      <h3 class="text-h3 mt-2">{title}</h3>
+    </div>
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg)] border border-[var(--border)] text-[var(--text-strong)] group-hover:border-[color:var(--color-primary)] group-hover:text-[color:var(--color-primary)] transition-colors"
+      aria-hidden="true"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 17 7M9 7h8v8" />
+      </svg>
+    </span>
+  </div>
+  <p class="text-[var(--text)] mt-4 leading-relaxed">{body}</p>
+  <span class="inline-flex items-center gap-1 mt-6 font-semibold text-[color:var(--color-primary)]">
+    {cta}
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-0.5 transition-transform">
+      <path d="M5 12h14M13 5l7 7-7 7" />
+    </svg>
+  </span>
+</a>

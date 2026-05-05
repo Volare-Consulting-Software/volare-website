@@ -1,0 +1,35 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  transitionName?: string;
+}
+const { eyebrow, title, subtitle, transitionName } = Astro.props;
+---
+
+<section class="container-page pt-16 md:pt-24 pb-12 md:pb-20">
+  {eyebrow && <Eyebrow class="reveal">{eyebrow}</Eyebrow>}
+  <h1
+    class="text-display mt-5 reveal"
+    transition:name={transitionName}
+    style="transition-delay: 80ms;"
+  >
+    {title}
+  </h1>
+  {
+    subtitle && (
+      <p
+        class="text-lg md:text-xl text-[var(--text)] mt-6 max-w-2xl leading-snug reveal"
+        style="transition-delay: 160ms;"
+      >
+        {subtitle}
+      </p>
+    )
+  }
+  <div class="mt-10 reveal" style="transition-delay: 240ms;">
+    <slot />
+  </div>
+</section>

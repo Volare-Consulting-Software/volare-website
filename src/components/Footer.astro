@@ -1,0 +1,42 @@
+---
+import Wordmark from "./Wordmark.astro";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--border)] mt-24">
+  <div class="container-page py-12 grid gap-8 md:grid-cols-3 md:items-start">
+    <div class="space-y-4">
+      <Wordmark size={28} />
+      <p class="text-sm text-[var(--text-muted)] max-w-xs">
+        Your ideas taking flight.
+      </p>
+    </div>
+
+    <nav aria-label="Footer products" class="space-y-2 text-sm">
+      <div class="text-[var(--text-muted)] uppercase tracking-wider text-xs">Products</div>
+      <a href="/pilota" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">Pilota</a>
+      <a href="/vito" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">Vito</a>
+    </nav>
+
+    <nav aria-label="Footer company" class="space-y-2 text-sm">
+      <div class="text-[var(--text-muted)] uppercase tracking-wider text-xs">Company</div>
+      <a href="/#about" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">About</a>
+      <a href="mailto:hello@go-volare.com" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">hello@go-volare.com</a>
+      <a
+        href="https://github.com/Volare-Consulting-Software"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+
+  <div class="border-t border-[var(--border)]">
+    <div class="container-page py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[var(--text-muted)]">
+      <div>© {year} Volare Consulting. All rights reserved.</div>
+      <div>Built with Astro · hosted on Cloudflare</div>
+    </div>
+  </div>
+</footer>
