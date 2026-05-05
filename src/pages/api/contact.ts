@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { env } from "cloudflare:workers";
 
 export const prerender = false;
 
@@ -17,11 +18,15 @@ const json = (body: unknown, status = 200) =>
 
 const sanitize = (s: string) => s.replace(/[<>]/g, "").trim();
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime?: { env: Record<string, string | undefined> } }).runtime?.env ?? {};
-  const RESEND_API_KEY = env.RESEND_API_KEY;
-  const CONTACT_TO = env.CONTACT_TO;
-  const CONTACT_FROM = env.CONTACT_FROM ?? "onboarding@resend.dev";
+export const POST: APIRoute = async ({ request }) => {
+  const e = env as unknown as {
+    RESEND_API_KEY?: string;
+    CONTACT_TO?: string;
+    CONTACT_FROM?: string;
+  };
+  const RESEND_API_KEY = e.RESEND_API_KEY;
+  const CONTACT_TO = e.CONTACT_TO;
+  const CONTACT_FROM = e.CONTACT_FROM ?? "onboarding@resend.dev";
 
   if (!RESEND_API_KEY || !CONTACT_TO) {
     return json({ error: "Server is not configured." }, 500);
