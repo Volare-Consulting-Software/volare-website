@@ -13,9 +13,9 @@ function active(href: string) {
   id="site-header"
   class="sticky top-0 z-40 border-b border-transparent transition-colors duration-200"
 >
-  <div class="container-page flex items-center justify-between h-16">
+  <div class="container-page flex items-center justify-between h-20">
     <a href="/" class="flex items-center" aria-label="Volare home">
-      <Wordmark size={28} />
+      <Wordmark size={32} showTagline />
     </a>
 
     <nav aria-label="Primary" class="hidden md:flex items-center gap-1 text-[15px]">
@@ -42,7 +42,12 @@ function active(href: string) {
             class:list={[active("/pilota") && "text-[color:var(--color-primary)]"]}
           >
             <div class="font-semibold text-[var(--text-strong)]">Pilota</div>
-            <div class="text-sm text-[var(--text-muted)]">AI SDLC engine</div>
+            <div class="text-sm text-[var(--text-muted)] inline-flex items-center gap-1">
+          AI + Engineers =
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[color:var(--color-primary)]">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
           </a>
           <a
             href="/vito"
@@ -51,7 +56,17 @@ function active(href: string) {
             class:list={[active("/vito") && "text-[color:var(--color-primary)]"]}
           >
             <div class="font-semibold text-[var(--text-strong)]">Vito</div>
-            <div class="text-sm text-[var(--text-muted)]">The voice of your product</div>
+            <div class="text-sm text-[var(--text-muted)] inline-flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[color:var(--color-primary)]">
+            <path d="M12 8V4H8" />
+            <rect width="16" height="12" x="4" y="8" rx="2" />
+            <path d="M2 14h2" />
+            <path d="M20 14h2" />
+            <path d="M15 13v2" />
+            <path d="M9 13v2" />
+          </svg>
+          AI Assistant
+        </div>
           </a>
         </div>
       </div>
@@ -66,7 +81,8 @@ function active(href: string) {
       <ThemeToggle />
 
       <a
-        href="/#about"
+        href="#engage"
+        data-engage
         class="ml-2 inline-flex items-center justify-center px-4 h-10 rounded-md bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-pressed)] transition-colors"
       >
         Start an engagement
@@ -92,8 +108,8 @@ function active(href: string) {
     hidden
     class="md:hidden fixed inset-0 z-50 bg-[var(--bg)] flex flex-col"
   >
-    <div class="container-page flex items-center justify-between h-16 border-b border-[var(--border)]">
-      <Wordmark size={28} />
+    <div class="container-page flex items-center justify-between h-20 border-b border-[var(--border)]">
+      <Wordmark size={32} showTagline />
       <button
         id="nav-close"
         type="button"
@@ -109,11 +125,26 @@ function active(href: string) {
       <div class="text-[var(--text-muted)] text-sm uppercase tracking-wider px-3 pt-2 pb-1">Products</div>
       <a href="/pilota" class="rounded-lg px-3 py-3 hover:bg-[var(--primary-tint)] transition-colors">
         <div class="font-semibold text-[var(--text-strong)]">Pilota</div>
-        <div class="text-sm text-[var(--text-muted)]">AI SDLC engine</div>
+        <div class="text-sm text-[var(--text-muted)] inline-flex items-center gap-1">
+          AI + Engineers =
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[color:var(--color-primary)]">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
       </a>
       <a href="/vito" class="rounded-lg px-3 py-3 hover:bg-[var(--primary-tint)] transition-colors">
         <div class="font-semibold text-[var(--text-strong)]">Vito</div>
-        <div class="text-sm text-[var(--text-muted)]">The voice of your product</div>
+        <div class="text-sm text-[var(--text-muted)] inline-flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[color:var(--color-primary)]">
+            <path d="M12 8V4H8" />
+            <rect width="16" height="12" x="4" y="8" rx="2" />
+            <path d="M2 14h2" />
+            <path d="M20 14h2" />
+            <path d="M15 13v2" />
+            <path d="M9 13v2" />
+          </svg>
+          AI Assistant
+        </div>
       </a>
       <div class="h-px bg-[var(--border)] my-4"></div>
       <a href="/#about" class="rounded-lg px-3 py-3 hover:bg-[var(--bg-raised)] transition-colors text-[var(--text-strong)]">
@@ -122,7 +153,8 @@ function active(href: string) {
       <div class="mt-auto flex items-center justify-between gap-3 pt-6">
         <ThemeToggle />
         <a
-          href="/#about"
+          href="#engage"
+          data-engage
           class="flex-1 inline-flex items-center justify-center px-4 h-12 rounded-md bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-pressed)] transition-colors"
         >
           Start an engagement

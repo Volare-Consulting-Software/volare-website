@@ -3,16 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
-import Pipeline from "../components/Pipeline.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
 import IconBadge from "../components/IconBadge.astro";
-import { pilota, company } from "../content/copy";
+import { pilota } from "../content/copy";
 ---
 
 <Layout
-  title="Pilota — an AI SDLC engine | Volare"
-  description="Pilota drives a project from idea to merged code with coordinated AI agents and humans at every gate."
+  title="Pilota — how we ship | Volare"
+  description="Pilota is the AI engine Volare uses to ship software fast — with humans in charge of quality at every step. Green-field systems, integrations, and improvements."
 >
   <Hero
     eyebrow={pilota.hero.eyebrow}
@@ -20,45 +19,80 @@ import { pilota, company } from "../content/copy";
     subtitle={pilota.hero.subtitle}
     transitionName="hero-headline"
   >
-    <CTAButton href="#how-it-works" variant="primary" size="large">
-      How it works
+    <CTAButton href="#engagements" variant="primary" size="large">
+      What we can build for you
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 5v14M5 12l7 7 7-7" />
       </svg>
     </CTAButton>
   </Hero>
 
-  <Section tone="raised" id="problem">
+  <Section tone="raised" id="intro">
     <div class="grid md:grid-cols-12 gap-10">
       <div class="md:col-span-5">
         <ScrollReveal>
-          <Eyebrow>The problem</Eyebrow>
-          <h2 class="text-h2 mt-3">{pilota.problem.headline}</h2>
+          <Eyebrow>What it is</Eyebrow>
+          <h2 class="text-h2 mt-3">{pilota.intro.headline}</h2>
         </ScrollReveal>
       </div>
-      <div class="md:col-span-7 space-y-5">
-        {
-          pilota.problem.body.map((para, i) => (
-            <ScrollReveal delay={120 + i * 80}>
-              <p class="text-lg leading-relaxed">{para}</p>
-            </ScrollReveal>
-          ))
-        }
+      <div class="md:col-span-7">
+        <ScrollReveal delay={120}>
+          <p class="text-lg leading-relaxed">{pilota.intro.body}</p>
+        </ScrollReveal>
       </div>
     </div>
   </Section>
 
-  <Section id="how-it-works">
+  <Section id="engagements">
     <ScrollReveal>
-      <Eyebrow>How it works</Eyebrow>
-      <h2 class="text-h2 mt-3 max-w-3xl">Six stages. Each one real before the next begins.</h2>
+      <Eyebrow>What we can build for you</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">Four ways to put Pilota to work.</h2>
     </ScrollReveal>
-    <div class="mt-12">
-      <Pipeline stages={pilota.pipeline} />
+    <div class="grid gap-6 md:grid-cols-2 mt-12">
+      {
+        pilota.engagements.map((e, i) => (
+          <ScrollReveal delay={i * 100}>
+            <article class="rounded-2xl border border-[var(--border)] bg-[var(--bg-raised)] p-7 h-full flex flex-col">
+              <div class="text-eyebrow">{e.tagline}</div>
+              <h3 class="text-h3 mt-2">{e.title}</h3>
+              <p class="text-[var(--text)] mt-3 leading-relaxed">{e.body}</p>
+            </article>
+          </ScrollReveal>
+        ))
+      }
     </div>
   </Section>
 
-  <Section tone="raised" id="gates">
+  <Section tone="raised" id="process">
+    <ScrollReveal>
+      <Eyebrow>How we work</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">A clear plan. Each step real before the next begins.</h2>
+    </ScrollReveal>
+    <ol class="list-none p-0 mt-12 grid gap-5 md:grid-cols-2">
+      {
+        pilota.process.map((p, i) => (
+          <ScrollReveal delay={i * 80} as="li">
+            <article class="h-full rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-7">
+              <div class="flex items-start gap-4">
+                <span
+                  class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--color-primary)] text-white font-bold text-sm shrink-0"
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="text-h3">{p.title}</h3>
+                  <p class="text-[var(--text)] mt-3 leading-relaxed">{p.body}</p>
+                </div>
+              </div>
+            </article>
+          </ScrollReveal>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <Section id="slop">
     <div class="grid md:grid-cols-12 gap-10 items-start">
       <div class="md:col-span-5">
         <ScrollReveal>
@@ -69,28 +103,12 @@ import { pilota, company } from "../content/copy";
               <path d="m17 11 2 2 4-4" />
             </svg>
           </IconBadge>
-          <h2 class="text-h2 mt-5">{pilota.gates.headline}</h2>
+          <h2 class="text-h2 mt-5">{pilota.slop.headline}</h2>
         </ScrollReveal>
       </div>
       <div class="md:col-span-7">
         <ScrollReveal delay={120}>
-          <p class="text-lg leading-relaxed">{pilota.gates.body}</p>
-        </ScrollReveal>
-      </div>
-    </div>
-  </Section>
-
-  <Section id="agnostic">
-    <div class="grid md:grid-cols-12 gap-10 items-start">
-      <div class="md:col-span-5">
-        <ScrollReveal>
-          <Eyebrow>Plug into your stack</Eyebrow>
-          <h2 class="text-h2 mt-3">{pilota.agnostic.headline}</h2>
-        </ScrollReveal>
-      </div>
-      <div class="md:col-span-7">
-        <ScrollReveal delay={120}>
-          <p class="text-lg leading-relaxed">{pilota.agnostic.body}</p>
+          <p class="text-lg leading-relaxed">{pilota.slop.body}</p>
         </ScrollReveal>
       </div>
     </div>
@@ -115,7 +133,7 @@ import { pilota, company } from "../content/copy";
     </div>
     <div class="mt-12">
       <ScrollReveal>
-        <CTAButton href={`mailto:${company.email}?subject=Pilota%20engagement`} variant="primary" size="large">
+        <CTAButton href="#engage" variant="primary" size="large">
           Start an engagement
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M13 5l7 7-7 7" />

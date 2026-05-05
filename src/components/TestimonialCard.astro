@@ -1,0 +1,113 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  title?: string;
+  company: string;
+  companyLogo?: string | null;
+  companyUrl?: string | null;
+  authorPhoto?: string | null;
+  authorInitials: string;
+  location?: string | null;
+}
+const {
+  quote,
+  author,
+  title,
+  company,
+  companyLogo,
+  companyUrl,
+  authorPhoto,
+  authorInitials,
+  location,
+} = Astro.props;
+---
+
+<article class="rounded-2xl border border-[var(--border)] bg-[var(--bg-raised)] p-7 md:p-10">
+  {
+    companyLogo && companyUrl && (
+      <a
+        href={companyUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        aria-label={`Visit ${company}`}
+        class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-white border border-[var(--border)] hover:border-[color:var(--color-primary)] transition-colors"
+      >
+        <img
+          src={companyLogo}
+          alt={company}
+          height="32"
+          class="block h-8 w-auto"
+        />
+      </a>
+    )
+  }
+  {
+    companyLogo && !companyUrl && (
+      <div class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-white border border-[var(--border)]">
+        <img
+          src={companyLogo}
+          alt={company}
+          height="32"
+          class="block h-8 w-auto"
+        />
+      </div>
+    )
+  }
+  {
+    !companyLogo && companyUrl && (
+      <a
+        href={companyUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--color-primary)] hover:underline"
+      >
+        {company}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7M9 7h8v8" />
+        </svg>
+      </a>
+    )
+  }
+
+  <blockquote class="mt-6 md:mt-8 relative">
+    <span
+      class="absolute -top-3 -left-1 text-6xl leading-none text-[color:var(--color-primary)] opacity-20 font-extrabold select-none"
+      aria-hidden="true"
+    >
+      &ldquo;
+    </span>
+    <p class="text-xl md:text-2xl text-[var(--text-strong)] leading-snug pl-7">
+      {quote}
+    </p>
+  </blockquote>
+
+  <footer class="mt-8 pt-6 border-t border-[var(--border)] flex items-center gap-4">
+    {
+      authorPhoto ? (
+        <img
+          src={authorPhoto}
+          alt={author}
+          width="56"
+          height="56"
+          class="block w-14 h-14 rounded-full object-cover border border-[var(--border)]"
+        />
+      ) : (
+        <div
+          class="flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-primary-tint)] text-[color:var(--color-primary)] font-extrabold text-lg shrink-0"
+          aria-hidden="true"
+        >
+          {authorInitials}
+        </div>
+      )
+    }
+    <div>
+      <div class="font-semibold text-[var(--text-strong)]">{author}</div>
+      <div class="text-sm text-[var(--text-muted)]">
+        {title && <span>{title} · </span>}
+        {company}
+        {location && <span> · {location}</span>}
+      </div>
+    </div>
+  </footer>
+</article>

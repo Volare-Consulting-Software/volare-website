@@ -6,10 +6,7 @@ const year = new Date().getFullYear();
 <footer class="border-t border-[var(--border)] mt-24">
   <div class="container-page py-12 grid gap-8 md:grid-cols-3 md:items-start">
     <div class="space-y-4">
-      <Wordmark size={28} />
-      <p class="text-sm text-[var(--text-muted)] max-w-xs">
-        Your ideas taking flight.
-      </p>
+      <Wordmark size={32} showTagline />
     </div>
 
     <nav aria-label="Footer products" class="space-y-2 text-sm">
@@ -21,7 +18,7 @@ const year = new Date().getFullYear();
     <nav aria-label="Footer company" class="space-y-2 text-sm">
       <div class="text-[var(--text-muted)] uppercase tracking-wider text-xs">Company</div>
       <a href="/#about" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">About</a>
-      <a href="mailto:hello@go-volare.com" class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">hello@go-volare.com</a>
+      <a href="#engage" data-engage class="block text-[var(--text)] hover:text-[var(--text-strong)] transition-colors">Start an engagement</a>
       <a
         href="https://github.com/Volare-Consulting-Software"
         rel="noopener noreferrer"

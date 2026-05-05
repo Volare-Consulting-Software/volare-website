@@ -1,25 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import WelcomeHero from "../components/WelcomeHero.astro";
 import IntroducingPilota from "../components/IntroducingPilota.astro";
 import Section from "../components/Section.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
 import ProductCard from "../components/ProductCard.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
+import LeadershipCard from "../components/LeadershipCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
 import { home, company } from "../content/copy";
 ---
 
 <Layout
   title="Volare Consulting — Introducing Pilota"
-  description="Volare builds software the way it should have been built the first time. Meet Pilota, our AI engine that takes a project from idea to merged code."
+  description="Volare Consulting turns ideas into custom software, AI, and technology systems for organizations that need real outcomes. Meet Pilota, the AI engine that powers how we ship — without the slop."
   showAirplaneTrail={true}
 >
+  <WelcomeHero />
   <IntroducingPilota />
 
   <Section tone="raised" id="pilota-glance">
     <ScrollReveal>
-      <Eyebrow>Pilota at a glance</Eyebrow>
-      <h2 class="text-h2 mt-3 max-w-3xl">From the rough idea to merged code, in three real motions.</h2>
+      <Eyebrow>How we work</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">Three motions. Real software at every step.</h2>
     </ScrollReveal>
 
     <div class="grid gap-6 md:grid-cols-3 mt-12">
@@ -39,7 +43,7 @@ import { home, company } from "../content/copy";
     <div class="mt-12">
       <ScrollReveal>
         <CTAButton href="/pilota" variant="ghost">
-          Read the technical overview
+          See how we work
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M13 5l7 7-7 7" />
           </svg>
@@ -86,8 +90,62 @@ import { home, company } from "../content/copy";
     </div>
   </Section>
 
+  <Section id="testimonials">
+    <ScrollReveal>
+      <Eyebrow>{home.testimonials.eyebrow}</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">{home.testimonials.headline}</h2>
+    </ScrollReveal>
+    <div class="grid gap-6 md:grid-cols-2 mt-12">
+      {
+        home.testimonials.items.map((t, i) => (
+          <ScrollReveal delay={120 + i * 100}>
+            <TestimonialCard
+              quote={t.quote}
+              author={t.author}
+              title={t.title}
+              company={t.company}
+              companyLogo={t.companyLogo}
+              companyUrl={t.companyUrl}
+              authorPhoto={t.authorPhoto}
+              authorInitials={t.authorInitials}
+              location={t.location}
+            />
+          </ScrollReveal>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="leadership" tone="raised">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-4">
+        <ScrollReveal>
+          <Eyebrow>{home.leadership.eyebrow}</Eyebrow>
+          <h2 class="text-h2 mt-3">{home.leadership.headline}</h2>
+        </ScrollReveal>
+      </div>
+      <div class="md:col-span-8 space-y-6">
+        {
+          home.leadership.members.map((m, i) => (
+            <ScrollReveal delay={120 + i * 100}>
+              <LeadershipCard
+                name={m.name}
+                title={m.title}
+                location={m.location}
+                initials={m.initials}
+                photo={m.photo}
+                bio={m.bio}
+                linkedin={m.linkedin}
+              />
+            </ScrollReveal>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
   <Section id="about">
-    <div class="grid md:grid-cols-12 gap-10">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
       <div class="md:col-span-5">
         <ScrollReveal>
           <Eyebrow>About</Eyebrow>
@@ -104,8 +162,11 @@ import { home, company } from "../content/copy";
         }
         <ScrollReveal delay={400}>
           <div class="pt-4 flex flex-wrap gap-3">
-            <CTAButton href={`mailto:${company.email}`} variant="primary">
-              {company.email}
+            <CTAButton href="#engage" variant="primary">
+              Send us a message
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
             </CTAButton>
             <CTAButton href={company.github} variant="ghost" external>
               GitHub

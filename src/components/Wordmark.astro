@@ -1,32 +1,37 @@
 ---
 interface Props {
   size?: number;
+  showTagline?: boolean;
   class?: string;
 }
-const { size = 28, class: className = "" } = Astro.props;
+const { size = 28, showTagline = false, class: className = "" } = Astro.props;
 ---
 
-<span class={`inline-flex items-center gap-2 ${className}`} transition:name="wordmark">
-  <img
-    src="/logo-icon.png"
-    alt=""
-    width={size}
-    height={size}
-    class="block dark:hidden"
-    aria-hidden="true"
-  />
+<span class={`inline-flex items-center gap-2.5 ${className}`} transition:name="wordmark">
   <img
     src="/logo-icon-inverse.png"
     alt=""
     width={size}
     height={size}
-    class="hidden dark:block"
+    class="theme-icon block"
     aria-hidden="true"
   />
-  <span
-    class="font-extrabold tracking-tight text-[color:var(--text-strong)] lowercase"
-    style={`font-size: ${Math.round(size * 0.78)}px; letter-spacing: -0.02em;`}
-  >
-    volare
+  <span class="flex flex-col leading-none">
+    <span
+      class="font-extrabold tracking-tight text-[color:var(--text-strong)] lowercase"
+      style={`font-size: ${Math.round(size * 0.78)}px; letter-spacing: -0.02em;`}
+    >
+      volare
+    </span>
+    {
+      showTagline && (
+        <span
+          class="text-[var(--text-muted)] mt-1"
+          style={`font-size: ${Math.round(size * 0.36)}px; letter-spacing: 0.01em;`}
+        >
+          Your ideas taking flight.
+        </span>
+      )
+    }
   </span>
 </span>

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #5E27D2;
   --color-primary-hover: #4E1FB0;
@@ -50,15 +52,15 @@
 
   html.dark {
     color-scheme: dark;
-    --bg: #1A1625;
-    --bg-raised: #2A2438;
-    --bg-sunken: #0F0C18;
-    --border: #3D3852;
-    --border-strong: #6E6982;
-    --text: #E4E2EA;
-    --text-strong: #FFFFFF;
-    --text-muted: #9C97AA;
-    --primary-tint: #2A1F4A;
+    --bg: #0F0F11;
+    --bg-raised: #18181B;
+    --bg-sunken: #08080A;
+    --border: #26262A;
+    --border-strong: #3F3F46;
+    --text: #E4E4E7;
+    --text-strong: #FAFAFA;
+    --text-muted: #A1A1AA;
+    --primary-tint: #1F1429;
   }
 
   html, body {
@@ -89,6 +91,10 @@
     border-radius: 4px;
   }
 
+  :where([id]) {
+    scroll-margin-top: 6rem;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -100,6 +106,13 @@
 }
 
 @layer utilities {
+  .theme-icon {
+    filter: invert(1);
+  }
+  html.dark .theme-icon {
+    filter: none;
+  }
+
   .text-display {
     font-size: var(--text-display);
     font-weight: 800;

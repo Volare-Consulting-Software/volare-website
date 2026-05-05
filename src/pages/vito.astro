@@ -5,12 +5,13 @@ import Section from "../components/Section.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
-import { vito, company } from "../content/copy";
+import ChannelIcon from "../components/ChannelIcon.astro";
+import { vito } from "../content/copy";
 ---
 
 <Layout
-  title="Vito — the voice of your product | Volare"
-  description="Vito is Volare's AI voice for chatbots, agentic workflows, and customer-facing surfaces. Direct. Plainspoken. Inheritor of the Volare voice."
+  title="Vito — your team's AI assistant | Volare"
+  description="Vito is the AI assistant Volare builds into the software we ship for you. Multi-channel — email, Teams, Slack, SMS, WhatsApp — connected to your systems. Fact-first. No fluff."
 >
   <Hero
     eyebrow={vito.hero.eyebrow}
@@ -18,23 +19,69 @@ import { vito, company } from "../content/copy";
     subtitle={vito.hero.subtitle}
     transitionName="hero-headline"
   >
-    <CTAButton href={`mailto:${company.email}?subject=Vito%20engagement`} variant="primary" size="large">
-      Talk to us
+    <CTAButton href="#engage" variant="primary" size="large">
+      Talk to us about Vito
     </CTAButton>
   </Hero>
 
-  <Section tone="raised" id="uses">
+  <Section tone="raised" id="intro">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <ScrollReveal>
+          <Eyebrow>What he is</Eyebrow>
+          <h2 class="text-h2 mt-3">{vito.intro.headline}</h2>
+        </ScrollReveal>
+      </div>
+      <div class="md:col-span-7">
+        <ScrollReveal delay={120}>
+          <p class="text-lg leading-relaxed">{vito.intro.body}</p>
+        </ScrollReveal>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="channels">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <ScrollReveal>
+          <Eyebrow>Where he speaks</Eyebrow>
+          <h2 class="text-h2 mt-3">{vito.channels.headline}</h2>
+        </ScrollReveal>
+        <ScrollReveal delay={120}>
+          <p class="text-[var(--text)] mt-5 leading-relaxed max-w-md">
+            {vito.channels.body}
+          </p>
+        </ScrollReveal>
+      </div>
+      <div class="md:col-span-7">
+        <ScrollReveal delay={200}>
+          <ul class="flex flex-wrap gap-3">
+            {
+              vito.channels.items.map((c) => (
+                <li class="inline-flex items-center gap-2 px-4 h-11 rounded-full border border-[var(--border)] bg-[var(--bg-raised)] text-[var(--text-strong)] font-semibold text-[15px]">
+                  <ChannelIcon name={c} size={16} class="text-[color:var(--color-primary)]" />
+                  {c}
+                </li>
+              ))
+            }
+          </ul>
+        </ScrollReveal>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="raised" id="knowledge">
     <ScrollReveal>
-      <Eyebrow>What Vito does</Eyebrow>
-      <h2 class="text-h2 mt-3 max-w-3xl">Three places he speaks for you.</h2>
+      <Eyebrow>What he knows</Eyebrow>
+      <h2 class="text-h2 mt-3 max-w-3xl">{vito.knowledge.headline}</h2>
     </ScrollReveal>
-    <div class="grid gap-6 md:grid-cols-3 mt-12">
+    <div class="grid gap-6 md:grid-cols-2 mt-12">
       {
-        vito.uses.map((u, i) => (
-          <ScrollReveal delay={i * 100}>
+        vito.knowledge.items.map((k, i) => (
+          <ScrollReveal delay={i * 120}>
             <article class="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-7 h-full">
-              <h3 class="text-h3">{u.title}</h3>
-              <p class="text-[var(--text)] mt-3 leading-relaxed">{u.body}</p>
+              <h3 class="text-h3">{k.title}</h3>
+              <p class="text-[var(--text)] mt-3 leading-relaxed">{k.body}</p>
             </article>
           </ScrollReveal>
         ))
@@ -46,13 +93,23 @@ import { vito, company } from "../content/copy";
     <div class="grid md:grid-cols-12 gap-10 items-start">
       <div class="md:col-span-5">
         <ScrollReveal>
-          <Eyebrow>The voice</Eyebrow>
+          <Eyebrow>How he sounds</Eyebrow>
           <h2 class="text-h2 mt-3">{vito.voice.headline}</h2>
         </ScrollReveal>
       </div>
       <div class="md:col-span-7">
         <ScrollReveal delay={120}>
           <p class="text-lg leading-relaxed">{vito.voice.body}</p>
+        </ScrollReveal>
+        <ScrollReveal delay={240}>
+          <div class="mt-10">
+            <CTAButton href="#engage" variant="primary" size="large">
+              Bring Vito to your team
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </CTAButton>
+          </div>
         </ScrollReveal>
       </div>
     </div>

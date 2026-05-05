@@ -1,0 +1,230 @@
+---
+import CTAButton from "./CTAButton.astro";
+---
+
+<section class="welcome-hero relative overflow-hidden">
+  <div class="container-page relative pt-20 md:pt-28 pb-20 md:pb-28">
+    <div class="grid md:grid-cols-[1fr_auto] md:gap-12 lg:gap-20 items-center">
+      <div class="welcome-content max-w-3xl">
+        <h1 class="welcome-headline text-display">
+          Your ideas
+          <br />
+          taking flight.
+        </h1>
+        <p class="welcome-sub text-lg md:text-xl text-[var(--text)] mt-6 max-w-2xl leading-snug">
+          Custom software, AI, and technology consulting for organizations with an idea worth building.
+          Bring us yours — we'll design, build, and ship the solution that makes it real.
+        </p>
+        <div class="welcome-cta mt-10 flex flex-col sm:flex-row gap-3">
+          <CTAButton href="#engage" variant="primary" size="large">
+            Start an engagement
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </CTAButton>
+          <CTAButton href="#pilota-glance" variant="ghost" size="large">
+            How we work
+          </CTAButton>
+        </div>
+      </div>
+
+      <div class="welcome-journey hidden md:block">
+        <svg
+          viewBox="0 0 100 600"
+          preserveAspectRatio="xMidYMid meet"
+          class="block w-[100px] h-[480px]"
+          aria-hidden="true"
+        >
+          <defs>
+            <path id="welcome-flight-path" d="M 50 560 L 50 40" fill="none" />
+          </defs>
+
+          <!-- dotted vertical line connecting all stops -->
+          <line
+            x1="50" y1="40" x2="50" y2="560"
+            stroke="var(--color-primary)"
+            stroke-opacity="0.35"
+            stroke-width="2"
+            stroke-dasharray="2 9"
+            stroke-linecap="round"
+          />
+
+          <!-- BASE: Lightbulb (the idea) -->
+          <g class="stop stop-1" transform="translate(50, 530)">
+            <circle r="26" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <g transform="translate(-12, -12)" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+              <path d="M9 18h6" />
+              <path d="M10 22h4" />
+            </g>
+          </g>
+
+          <!-- 1: Conversation (us working with the customer to understand the idea) -->
+          <g class="stop stop-2" transform="translate(50, 420)">
+            <circle r="26" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <g transform="translate(-12, -12)" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z" />
+              <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
+            </g>
+          </g>
+
+          <!-- 2: Document (plan) -->
+          <g class="stop stop-3" transform="translate(50, 310)">
+            <circle r="26" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <g transform="translate(-12, -12)" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M16 13H8" />
+              <path d="M16 17H8" />
+              <path d="M10 9H8" />
+            </g>
+          </g>
+
+          <!-- 3: Code/braces (build) -->
+          <g class="stop stop-4" transform="translate(50, 200)">
+            <circle r="26" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <g transform="translate(-12, -12)" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m18 16 4-4-4-4" />
+              <path d="m6 8-4 4 4 4" />
+              <path d="m14.5 4-5 16" />
+            </g>
+          </g>
+
+          <!-- 4: Package (product) -->
+          <g class="stop stop-5" transform="translate(50, 90)">
+            <circle r="26" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <g transform="translate(-12, -12)" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7.5 4.27 9 5.15" />
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+              <path d="m3.3 7 8.7 5 8.7-5" />
+              <path d="M12 22V12" />
+            </g>
+          </g>
+
+          <!-- airplane glyph travels up (3 cycles, then parks at top) -->
+          <g class="welcome-airplane">
+            <circle r="14" fill="var(--bg)" stroke="var(--color-primary)" stroke-width="1.5" />
+            <path d="M 9 0 L -7 -6 L -2 0 L -7 6 Z" fill="var(--color-primary)" />
+            <animateMotion dur="6s" begin="0.6s" repeatCount="3" rotate="auto" fill="freeze">
+              <mpath href="#welcome-flight-path" />
+            </animateMotion>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .welcome-hero {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-raised) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .welcome-headline,
+  .welcome-sub,
+  .welcome-cta {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .welcome-headline {
+    animation: w-rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms forwards;
+  }
+  .welcome-sub {
+    animation: w-rise 480ms cubic-bezier(0.2, 0.7, 0.2, 1) 280ms forwards;
+  }
+  .welcome-cta {
+    animation: w-rise 480ms cubic-bezier(0.2, 0.7, 0.2, 1) 440ms forwards;
+  }
+
+  /* Stops fade in sequentially as airplane passes (one-shot — they stay visible across loops) */
+  .stop {
+    opacity: 0;
+    animation: w-show 320ms ease-out forwards;
+  }
+  .stop-1 { animation-delay: 1000ms; }  /* lightbulb (idea) */
+  .stop-2 { animation-delay: 2200ms; }  /* conversation (understand) */
+  .stop-3 { animation-delay: 3500ms; }  /* document (plan) */
+  .stop-4 { animation-delay: 4800ms; }  /* code (build) */
+  .stop-5 { animation-delay: 6100ms; }  /* package (product) */
+
+  /* Airplane: blink-fade between loops 1 & 2, then a final loop that ends visible at the top. */
+  .welcome-airplane {
+    opacity: 0;
+    animation:
+      w-airplane-loop 6s linear 600ms 2,
+      w-airplane-final 6s linear 12600ms 1 forwards;
+  }
+  @keyframes w-airplane-loop {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes w-airplane-final {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes w-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes w-show {
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .welcome-headline, .welcome-sub, .welcome-cta,
+    .stop, .welcome-airplane {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  // SMIL doesn't honor prefers-reduced-motion natively — disable the loop for those users.
+  function tameMotion() {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll<SVGAnimationElement>(".welcome-airplane animateMotion").forEach((el) => {
+      if (reduced) {
+        el.setAttribute("repeatCount", "1");
+        el.setAttribute("dur", "0.01s");
+        el.setAttribute("begin", "0s");
+        el.setAttribute("fill", "freeze");
+      }
+    });
+  }
+
+  // Pause SMIL + CSS animations when the journey is offscreen (saves CPU and stops the loop running invisibly).
+  function setupViewportPause() {
+    const svgs = document.querySelectorAll<SVGSVGElement>(".welcome-journey svg");
+    if (!svgs.length || "IntersectionObserver" in window === false) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const svg = entry.target as SVGSVGElement;
+          const airplane = svg.querySelector(".welcome-airplane") as SVGGElement | null;
+          if (entry.isIntersecting) {
+            svg.unpauseAnimations?.();
+            if (airplane) airplane.style.animationPlayState = "running";
+          } else {
+            svg.pauseAnimations?.();
+            if (airplane) airplane.style.animationPlayState = "paused";
+          }
+        }
+      },
+      { threshold: 0 },
+    );
+    svgs.forEach((s) => observer.observe(s));
+  }
+
+  tameMotion();
+  setupViewportPause();
+  document.addEventListener("astro:after-swap", () => {
+    tameMotion();
+    setupViewportPause();
+  });
+</script>
