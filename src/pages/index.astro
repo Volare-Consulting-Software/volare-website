@@ -9,7 +9,87 @@ import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
 import LeadershipCard from "../components/LeadershipCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
-import { home, company } from "../content/copy";
+
+const home = {
+  pilotaPillars: [
+    {
+      title: "Plan it",
+      body: "We define what to build, who it's for, and what success looks like — before any code is written.",
+    },
+    {
+      title: "Build it small first",
+      body: "A working version of the whole thing on day one. Real software you can run, not a mockup.",
+    },
+    {
+      title: "Grow it in usable pieces",
+      body: "Each release adds a feature you can use. No big-bang launch that misses the date.",
+    },
+  ],
+  philosophy: {
+    headline: "We build software the way it should have been built the first time.",
+    body: [
+      "Most software gets built in a hurry, layered with workarounds, and shipped before anyone could ask the right questions. We do the opposite. We design what to build before we build it, get a working version live on day one, and grow it in pieces customers can actually use.",
+      "AI does the heavy lifting on the inside. People stay in charge at the moments that matter — what to build, what to keep, what to throw out. The result is software that survives contact with real users, because real users were the point all along.",
+    ],
+  },
+  vito: {
+    headline: "Meet Vito — your team's AI assistant.",
+    body: "Vito ships with the software we build for you. He talks to your team where they already work — email, Teams, Slack, SMS, WhatsApp — and pulls answers from the systems they already use. Fact-first, no AI fluff.",
+  },
+  about: {
+    headline: "Volare Consulting.",
+    body: [
+      "We're a small consulting firm that specializes in technology and software. We design, build, and improve the systems companies actually depend on — for organizations who need outcomes that make a difference to their bottom line.",
+      "Most engagements end in working software. Some end in a smarter integration, a clean migration, or a system that finally talks to the rest of the business. The common thread is judgment: we tell you what to build before we build it, and we ship the version that holds up in production.",
+      "Our work is grounded in two things we built and use every day: Pilota — the AI engine that lets us ship fast without sacrificing quality — and Vito, the AI assistant we embed in the systems we deliver.",
+      "If you have an idea worth building, we want to hear it.",
+    ],
+  },
+  testimonials: {
+    eyebrow: "What customers say",
+    headline: "Real software. Real time saved.",
+    items: [
+      {
+        quote:
+          "Volare built us a custom invoice management system — work that used to take hours now takes seconds. They also moved us off a third-party email provider and put us in control of our own domain.",
+        author: "Oscar Menendez Chavez",
+        title: "CEO",
+        company: "NC Pro Construction",
+        companyLogo: "/testimonials/ncpro-logo.png" as string | null,
+        companyUrl: "https://ncproconstruction.com" as string | null,
+        authorPhoto: "/testimonials/oscar.jpg" as string | null,
+        authorInitials: "OM",
+        location: "Charlotte, NC",
+      },
+      {
+        quote: "Anything technology, we trust Volare to get it done.",
+        author: "Ninfa Villagra",
+        title: "Owner",
+        company: "Target Tax Solutions",
+        companyLogo: "/testimonials/target-tax-logo.jpg" as string | null,
+        companyUrl: "https://target-tax-solutions.square.site/" as string | null,
+        authorPhoto: "/testimonials/ninfa.jpg" as string | null,
+        authorInitials: "NV",
+        location: null as string | null,
+      },
+    ],
+  },
+  leadership: {
+    eyebrow: "Leadership",
+    headline: "Built and led by an engineer.",
+    members: [
+      {
+        name: "Sam Longietti",
+        title: "Founder & CEO",
+        location: "Charlotte, North Carolina",
+        initials: "SL",
+        photo: "/people/sam.png" as string | null,
+        bio: "Sam has spent his career writing the software that moves money and freight. Years in transportation tech and fintech taught him that the systems people depend on every day have to be right — fast isn't enough on its own. He founded Volare Consulting to build that kind of software for everyone else, with AI doing the heavy lifting and humans in charge of quality.",
+        linkedin: "https://www.linkedin.com/in/sam-longietti-52bbb268/",
+      },
+    ],
+  },
+};
 ---
 
 <Layout
@@ -168,7 +248,7 @@ import { home, company } from "../content/copy";
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
             </CTAButton>
-            <CTAButton href={company.github} variant="ghost" external>
+            <CTAButton href="https://github.com/Volare-Consulting-Software" variant="ghost" external>
               GitHub
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M7 17 17 7M9 7h8v8" />

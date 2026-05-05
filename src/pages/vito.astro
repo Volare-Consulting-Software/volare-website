@@ -6,7 +6,50 @@ import ScrollReveal from "../components/ScrollReveal.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import CTAButton from "../components/CTAButton.astro";
 import ChannelIcon from "../components/ChannelIcon.astro";
-import { vito } from "../content/copy";
+
+const vito = {
+  hero: {
+    eyebrow: "Volare Vito",
+    title: "Vito.",
+    subtitle:
+      "Your team's AI assistant. He talks where they talk, knows what they know, and answers in facts.",
+  },
+  intro: {
+    headline: "A personal assistant for your team — across every channel they use.",
+    body: "Vito is an AI assistant Volare builds into the software we ship for you. He shows up where your team already works, plugs into the systems that hold the answers, and replies in plain language without the AI fluff.",
+  },
+  channels: {
+    headline: "Where Vito speaks.",
+    body: "Vito meets your team where they already are. One assistant, one personality, every surface they use to get work done.",
+    items: [
+      "Email",
+      "Microsoft Teams",
+      "Slack",
+      "Google Chat",
+      "SMS",
+      "WhatsApp",
+      "Voice",
+      "In-app chat",
+    ],
+  },
+  knowledge: {
+    headline: "Vito knows your systems.",
+    items: [
+      {
+        title: "Built-in by Volare",
+        body: "When we ship software for you, Vito ships with it. He knows your data, your users, and your business rules from the day the system goes live.",
+      },
+      {
+        title: "Connected to what you run",
+        body: "Hand Vito the keys to systems your team already uses — CRM, ticketing, knowledge base, internal docs. He works with what's there, no rip-and-replace.",
+      },
+    ],
+  },
+  voice: {
+    headline: "Direct. Plainspoken. Fact-first.",
+    body: "Vito doesn't pad. No \"I'd be happy to help,\" no \"I hope this finds you well,\" no marketing fog. He answers the question, cites where the answer came from, and stops talking when there's nothing left to say. Layer your brand on top so Vito sounds like you — not us.",
+  },
+};
 ---
 
 <Layout
